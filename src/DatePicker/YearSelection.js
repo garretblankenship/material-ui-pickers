@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
-import withStyles from 'material-ui/styles/withStyles';
+import { withStyles } from 'material-ui';
 import DomainPropTypes from '../constants/prop-types';
 import * as defaultUtils from '../utils/utils';
 import Year from './Year';

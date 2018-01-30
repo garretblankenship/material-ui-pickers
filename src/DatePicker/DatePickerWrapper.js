@@ -37,7 +37,11 @@ var DatePickerWrapper = function (_PickerBase) {
           value = _props.value,
           format = _props.format,
           autoOk = _props.autoOk,
+          minDate = _props.minDate,
+          maxDate = _props.maxDate,
           onChange = _props.onChange,
+          disablePast = _props.disablePast,
+          disableFuture = _props.disableFuture,
           animateYearScrolling = _props.animateYearScrolling,
           openToYearSelection = _props.openToYearSelection,
           returnMoment = _props.returnMoment,
@@ -48,13 +52,7 @@ var DatePickerWrapper = function (_PickerBase) {
           labelFunc = _props.labelFunc,
           utils = _props.utils,
           shouldDisableDate = _props.shouldDisableDate,
-          minDateMessage = _props.minDateMessage,
-          maxDateMessage = _props.maxDateMessage,
-          minDate = _props.minDate,
-          maxDate = _props.maxDate,
-          disablePast = _props.disablePast,
-          disableFuture = _props.disableFuture,
-          other = _objectWithoutProperties(_props, ['value', 'format', 'autoOk', 'onChange', 'animateYearScrolling', 'openToYearSelection', 'returnMoment', 'invalidLabel', 'leftArrowIcon', 'rightArrowIcon', 'renderDay', 'labelFunc', 'utils', 'shouldDisableDate', 'minDateMessage', 'maxDateMessage', 'minDate', 'maxDate', 'disablePast', 'disableFuture']);
+          other = _objectWithoutProperties(_props, ['value', 'format', 'autoOk', 'minDate', 'maxDate', 'onChange', 'disablePast', 'disableFuture', 'animateYearScrolling', 'openToYearSelection', 'returnMoment', 'invalidLabel', 'leftArrowIcon', 'rightArrowIcon', 'renderDay', 'labelFunc', 'utils', 'shouldDisableDate']);
 
       return React.createElement(
         ModalWrapper,
@@ -67,23 +65,21 @@ var DatePickerWrapper = function (_PickerBase) {
           onChange: this.handleTextFieldChange,
           onDismiss: this.handleDismiss,
           invalidLabel: invalidLabel,
-          labelFunc: labelFunc,
-          minDateMessage: minDateMessage,
-          maxDateMessage: maxDateMessage
+          labelFunc: labelFunc
         }, other),
         React.createElement(DatePicker, {
           date: date,
           onChange: this.handleChange,
+          disablePast: disablePast,
+          disableFuture: disableFuture,
           animateYearScrolling: animateYearScrolling,
           openToYearSelection: openToYearSelection,
+          minDate: minDate,
+          maxDate: maxDate,
           leftArrowIcon: leftArrowIcon,
           rightArrowIcon: rightArrowIcon,
           renderDay: renderDay,
           utils: utils,
-          minDate: minDate,
-          maxDate: maxDate,
-          disablePast: disablePast,
-          disableFuture: disableFuture,
           shouldDisableDate: shouldDisableDate
         })
       );

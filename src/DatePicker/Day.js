@@ -14,9 +14,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+
+import { IconButton, withStyles } from 'material-ui';
 import classnames from 'classnames';
-import withStyles from 'material-ui/styles/withStyles';
-import IconButton from 'material-ui/IconButton';
 
 var Day = function (_PureComponent) {
   _inherits(Day, _PureComponent);
@@ -94,12 +94,12 @@ var styles = function styles(theme) {
       pointerEvents: 'none'
     },
     current: {
-      color: theme.palette.primary.main,
+      color: theme.palette.primary[500],
       fontWeight: 600
     },
     selected: {
       color: theme.palette.common.white,
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.primary[500],
       fontWeight: theme.typography.fontWeightMedium
     },
     disabled: {

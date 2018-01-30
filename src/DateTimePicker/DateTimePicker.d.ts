@@ -6,15 +6,14 @@ import { RenderDay } from '../DatePicker/Calendar';
 import { Moment } from 'moment';
 
 export interface DateTimePickerProps {
-  date: Moment;
+  date: object;
   minDate?: DateType;
   maxDate?: DateType;
-  onChange: (date: Moment, isFinished: boolean, viewType?: DateTimePickerView) => void;
+  onChange: (date: object, isFinished?: boolean) => void;
   disablePast?: boolean;
   disableFuture?: boolean;
   autoSubmit?: boolean;
   showTabs?: boolean;
-  animateYearScrolling?: boolean;
   ampm?: boolean;
   openTo?: DateTimePickerView;
   leftArrowIcon: ReactNode;

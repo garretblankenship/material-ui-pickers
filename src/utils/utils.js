@@ -12,15 +12,15 @@ export function getCalendarHeaderText(date) {
 }
 
 export function getDatePickerHeaderText(date) {
-  return date.format('ddd, MMM D');
+  return date.format('ddd, MMM DD');
 }
 
 export function getDateTimePickerHeaderText(date) {
-  return date.format('MMM D');
+  return date.format('MMM DD');
 }
 
 export function getDayText(date) {
-  return date.format('D');
+  return date.format('DD');
 }
 
 export function getHourText(date, ampm) {
@@ -65,7 +65,7 @@ export function setYear(date, year) {
 
 export function getWeekdays() {
   return [0, 1, 2, 3, 4, 5, 6].map(function (dayOfWeek) {
-    return moment().weekday(dayOfWeek).format('dd')[0];
+    return moment().weekday(dayOfWeek).format('dd');
   });
 }
 

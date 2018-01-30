@@ -5,10 +5,10 @@ import { RenderDay } from './Calendar';
 import { Moment } from 'moment';
 
 export interface DatePickerProps {
-    date: Moment;
+    date: object;
     minDate?: DateType;
     maxDate?: DateType;
-    onChange: (date: Moment, isFinished?: boolean) => void;
+    onChange: (date: object, isFinished?: boolean) => void;
     disablePast?: boolean;
     disableFuture?: boolean;
     animateYearScrolling?: boolean;

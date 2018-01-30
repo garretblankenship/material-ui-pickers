@@ -3,7 +3,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import withStyles from 'material-ui/styles/withStyles';
+import { withStyles } from 'material-ui';
 
 export var DateTimePickerView = function DateTimePickerView(props) {
   var view = props.view,

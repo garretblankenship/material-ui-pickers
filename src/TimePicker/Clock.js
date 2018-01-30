@@ -8,7 +8,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withStyles from 'material-ui/styles/withStyles';
+import { withStyles } from 'material-ui';
 
 import ClockPointer from './ClockPointer';
 import * as clockType from '../constants/clock-types';

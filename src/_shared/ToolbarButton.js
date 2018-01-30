@@ -7,8 +7,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Typography from 'material-ui/Typography';
-import withStyles from 'material-ui/styles/withStyles';
+import { withStyles, Typography } from 'material-ui';
 
 var ToolbarButton = function ToolbarButton(props) {
   var classes = props.classes,
@@ -41,7 +40,7 @@ var styles = function styles(theme) {
   return {
     toolbarBtn: {
       cursor: 'pointer',
-      color: 'rgba(255, 255, 255, 0.54)'
+      color: theme.palette.common.lightWhite
     },
     toolbarBtnSelected: {
       color: theme.palette.common.white

@@ -10,7 +10,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withStyles from 'material-ui/styles/withStyles';
+import { withStyles } from 'material-ui';
 import classnames from 'classnames';
 
 export var ClockPointer = function (_Component) {
@@ -76,7 +76,7 @@ var styles = function styles(theme) {
   return {
     pointer: {
       width: 2,
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.primary[500],
       position: 'absolute',
       left: 'calc(50% - 1px)',
       bottom: '50%',
@@ -90,11 +90,11 @@ var styles = function styles(theme) {
       position: 'absolute',
       top: -21,
       left: -15,
-      border: '14px solid ' + theme.palette.primary.main,
+      border: '14px solid ' + theme.palette.primary[500],
       boxSizing: 'content-box'
     },
     noPoint: {
-      backgroundColor: theme.palette.primary.main
+      backgroundColor: theme.palette.primary[500]
     }
   };
 };

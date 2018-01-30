@@ -13,7 +13,6 @@ export interface DateTextFieldProps extends DialogProps {
   okLabel?: ReactNode;
   cancelLabel?: ReactNode;
   clearLabel?: ReactNode;
-  clearable?: boolean;
 }
 
 declare const DateTextField: ComponentClass<DateTextFieldProps>;

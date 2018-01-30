@@ -4,22 +4,22 @@ import { DateType } from '../constants/prop-types';
 import { Utils } from '../utils/utils';
 import { Moment } from 'moment';
 
-export type DayComponent = ReactElement<IconButtonProps>;
+type DayComponent = ReactElement<IconButtonProps>;
 
-export type RenderDay =
+export interface RenderDay {
     (
-        day: Moment,
-        selectedDate: Moment,
+        day: object,
+        selectedDate: object,
         dayInCurrentMonth: boolean,
         dayComponent: DayComponent,
-    ) => ReactNode;
-
+    ): ReactNode;
+}
 
 export interface CalendarProps {
-    date: Moment;
+    date: object;
     minDate?: DateType;
     maxDate?: DateType;
-    onChange: (date: Moment) => void;
+    onChange: (date: object) => void;
     disablePast?: boolean;
     disableFuture?: boolean;
     leftArrowIcon?: ReactNode;

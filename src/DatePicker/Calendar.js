@@ -8,12 +8,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import withStyles from 'material-ui/styles/withStyles';
+import { withStyles } from 'material-ui';
 
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
-import EventListener from 'react-event-listener';
-import keycode from 'keycode';
 import CalendarHeader from './CalendarHeader';
 import DomainPropTypes from '../constants/prop-types';
 import * as defaultUtils from '../utils/utils';
@@ -22,7 +20,6 @@ import Day from './Day';
 
 var moment = extendMoment(Moment);
 
-/* eslint-disable no-unused-expressions */
 export var Calendar = function (_Component) {
   _inherits(Calendar, _Component);
 
@@ -64,36 +61,6 @@ export var Calendar = function (_Component) {
           shouldDisableDate = _this$props2.shouldDisableDate;
 
       return disableFuture && day.isAfter(moment(), 'day') || disablePast && day.isBefore(moment(), 'day') || _this.validateMinMaxDate(day) || shouldDisableDate(day);
-    }, _this.moveToDay = function (day) {
-      if (day && !_this.shouldDisableDate(day)) {
-        _this.props.onChange(day);
-      }
-    }, _this.handleKeyDown = function (event) {
-      var _this$props3 = _this.props,
-          theme = _this$props3.theme,
-          date = _this$props3.date;
-
-
-      switch (keycode(event)) {
-        case 'up':
-          _this.moveToDay(date.clone().subtract(7, 'days'));
-          break;
-        case 'down':
-          _this.moveToDay(date.clone().add(7, 'days'));
-          break;
-        case 'left':
-          theme.direction === 'ltr' ? _this.moveToDay(date.clone().subtract(1, 'day')) : _this.moveToDay(date.clone().add(1, 'day'));
-          break;
-        case 'right':
-          theme.direction === 'ltr' ? _this.moveToDay(date.clone().add(1, 'day')) : _this.moveToDay(date.clone().subtract(1, 'day'));
-          break;
-        default:
-          // if keycode is not handled, stop execution
-          return;
-      }
-
-      // if event was handled prevent other side effects (e.g. page scroll)
-      event.preventDefault();
     }, _this.renderWeeks = function () {
       var utils = _this.props.utils;
       var currentMonth = _this.state.currentMonth;
@@ -103,18 +70,15 @@ export var Calendar = function (_Component) {
       return weeks.map(function (week) {
         return React.createElement(
           'div',
-          {
-            key: 'week-' + week[0].toString(),
-            className: _this.props.classes.week
-          },
+          { key: 'week-' + week[0].toString(), className: _this.props.classes.week },
           _this.renderDays(week)
         );
       });
     }, _this.renderDays = function (week) {
-      var _this$props4 = _this.props,
-          date = _this$props4.date,
-          renderDay = _this$props4.renderDay,
-          utils = _this$props4.utils;
+      var _this$props3 = _this.props,
+          date = _this$props3.date,
+          renderDay = _this$props3.renderDay,
+          utils = _this$props3.utils;
 
 
       var selectedDate = date.clone().startOf('day');
@@ -156,13 +120,6 @@ export var Calendar = function (_Component) {
   }
 
   _createClass(Calendar, [{
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      this.setState({
-        currentMonth: this.props.utils.getStartOfMonth(nextProps.date)
-      });
-    }
-  }, {
     key: 'render',
     value: function render() {
       var currentMonth = this.state.currentMonth;
@@ -174,7 +131,6 @@ export var Calendar = function (_Component) {
       return React.createElement(
         Fragment,
         null,
-        React.createElement(EventListener, { target: 'window', onKeyDown: this.handleKeyDown }),
         React.createElement(CalendarHeader, {
           currentMonth: currentMonth,
           onMonthChange: this.handleChangeMonth,
@@ -205,8 +161,6 @@ Calendar.propTypes = {
   leftArrowIcon: PropTypes.node,
   rightArrowIcon: PropTypes.node,
   renderDay: PropTypes.func,
-  /** @ignore */
-  theme: PropTypes.object.isRequired,
   utils: PropTypes.object,
   shouldDisableDate: PropTypes.func
 };
@@ -236,7 +190,4 @@ var styles = function styles(theme) {
   };
 };
 
-export default withStyles(styles, {
-  name: 'MuiPickersCalendar',
-  withTheme: true
-})(Calendar);
+export default withStyles(styles, { name: 'MuiPickersCalendar' })(Calendar);

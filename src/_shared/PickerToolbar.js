@@ -5,8 +5,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import withStyles from 'material-ui/styles/withStyles';
-import Toolbar from 'material-ui/Toolbar';
+import { Toolbar, withStyles } from 'material-ui';
 
 var PickerToolbar = function PickerToolbar(props) {
   var children = props.children,
@@ -39,7 +38,7 @@ var styles = function styles(theme) {
       alignItems: 'center',
       justifyContent: 'center',
       height: 50,
-      backgroundColor: theme.palette.type === 'light' ? theme.palette.primary.main : theme.palette.background.default
+      backgroundColor: theme.palette.type === 'light' ? theme.palette.primary[500] : theme.palette.background.default
     }
   };
 };

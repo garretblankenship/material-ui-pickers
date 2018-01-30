@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from 'material-ui/styles/withStyles';
-import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
+import { withStyles, IconButton, Typography } from 'material-ui';
 import * as defaultUtils from '../utils/utils';
 
 export var CalendarHeader = function CalendarHeader(props) {
@@ -49,12 +47,11 @@ export var CalendarHeader = function CalendarHeader(props) {
     React.createElement(
       'div',
       { className: classes.daysHeader },
-      utils.getWeekdays().map(function (day, index) {
+      utils.getWeekdays().map(function (day) {
         return React.createElement(
-          Typography
-          // eslint-disable-next-line react/no-array-index-key
-          ,
-          { key: index,
+          Typography,
+          {
+            key: day,
             type: 'caption',
             className: classes.dayLabel
           },

@@ -14,9 +14,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+
+import { withStyles, Typography } from 'material-ui';
 import classnames from 'classnames';
-import withStyles from 'material-ui/styles/withStyles';
-import Typography from 'material-ui/Typography';
 
 var Year = function (_PureComponent) {
   _inherits(Year, _PureComponent);
@@ -94,7 +94,7 @@ var styles = function styles(theme) {
       cursor: 'pointer',
       outline: 'none',
       '&:focus': {
-        color: theme.palette.primary.main,
+        color: theme.palette.primary[500],
         fontWeight: theme.typography.fontWeightMedium
       }
     },

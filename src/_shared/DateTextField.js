@@ -10,18 +10,15 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-/* eslint-disable react/sort-comp */
+/* eslint-disable react/jsx-no-duplicate-props */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import Icon from 'material-ui/Icon';
-import InputAdornment from 'material-ui/Input/InputAdornment';
-import TextField from 'material-ui/TextField';
-import IconButton from 'material-ui/IconButton';
-import withStyles from 'material-ui/styles/withStyles';
+import { TextField, InputAdornment, IconButton, Icon } from 'material-ui';
 
-import DomainPropTypes from '../constants/prop-types';
 import MaskedInput from './MaskedInput';
+
+/* eslint-disable react/sort-comp */
 
 var DateTextField = function (_PureComponent) {
   _inherits(DateTextField, _PureComponent);
@@ -57,45 +54,22 @@ var DateTextField = function (_PureComponent) {
       }
 
       return date.isValid() ? date.format(format) : invalidLabel;
-    }, _this.getError = function (value) {
-      var _this$props = _this.props,
-          maxDate = _this$props.maxDate,
-          minDate = _this$props.minDate,
-          disablePast = _this$props.disablePast,
-          disableFuture = _this$props.disableFuture,
-          maxDateMessage = _this$props.maxDateMessage,
-          minDateMessage = _this$props.minDateMessage,
-          invalidDateMessage = _this$props.invalidDateMessage;
-
-
-      if (!value.isValid()) {
-        return invalidDateMessage;
-      }
-
-      if (maxDate && value.isAfter(maxDate) || disableFuture && value.isAfter(moment().endOf('day'))) {
-        return maxDateMessage;
-      }
-
-      if (minDate && value.isBefore(minDate) || disablePast && value.isBefore(moment().startOf('day'))) {
-        return minDateMessage;
-      }
-
-      return '';
     }, _this.updateState = function () {
       var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _this.props;
       return {
         value: props.value,
         displayValue: _this.getDisplayDate(props),
-        error: _this.getError(moment(props.value))
+        error: ''
       };
     }, _this.state = _this.updateState(), _this.handleBlur = function (e) {
       e.preventDefault();
       e.stopPropagation();
     }, _this.handleChange = function (e) {
-      var _this$props2 = _this.props,
-          format = _this$props2.format,
-          clearable = _this$props2.clearable,
-          onClear = _this$props2.onClear;
+      var _this$props = _this.props,
+          format = _this$props.format,
+          invalidDateMessage = _this$props.invalidDateMessage,
+          clearable = _this$props.clearable,
+          onClear = _this$props.onClear;
 
 
       if (clearable && e.target.value === '') {
@@ -110,7 +84,7 @@ var DateTextField = function (_PureComponent) {
 
       var oldValue = moment(_this.state.value);
       var newValue = moment(e.target.value, format, true);
-      var error = _this.getError(newValue);
+      var error = newValue.isValid() ? '' : invalidDateMessage;
 
       _this.setState({
         displayValue: e.target.value,
@@ -139,9 +113,9 @@ var DateTextField = function (_PureComponent) {
         _this.openPicker(e);
       }
     }, _this.openPicker = function (e) {
-      var _this$props3 = _this.props,
-          disabled = _this$props3.disabled,
-          onClick = _this$props3.onClick;
+      var _this$props2 = _this.props,
+          disabled = _this$props2.disabled,
+          onClick = _this$props2.onClick;
 
 
       if (!disabled) {
@@ -162,7 +136,6 @@ var DateTextField = function (_PureComponent) {
     value: function render() {
       var _props = this.props,
           format = _props.format,
-          classes = _props.classes,
           disabled = _props.disabled,
           onClick = _props.onClick,
           invalidLabel = _props.invalidLabel,
@@ -176,14 +149,7 @@ var DateTextField = function (_PureComponent) {
           mask = _props.mask,
           InputProps = _props.InputProps,
           keyboardIcon = _props.keyboardIcon,
-          maxDate = _props.maxDate,
-          minDate = _props.minDate,
-          disablePast = _props.disablePast,
-          disableFuture = _props.disableFuture,
-          maxDateMessage = _props.maxDateMessage,
-          minDateMessage = _props.minDateMessage,
-          TextFieldComponent = _props.TextFieldComponent,
-          other = _objectWithoutProperties(_props, ['format', 'classes', 'disabled', 'onClick', 'invalidLabel', 'invalidDateMessage', 'clearable', 'onClear', 'emptyLabel', 'labelFunc', 'keyboard', 'value', 'mask', 'InputProps', 'keyboardIcon', 'maxDate', 'minDate', 'disablePast', 'disableFuture', 'maxDateMessage', 'minDateMessage', 'TextFieldComponent']);
+          other = _objectWithoutProperties(_props, ['format', 'disabled', 'onClick', 'invalidLabel', 'invalidDateMessage', 'clearable', 'onClear', 'emptyLabel', 'labelFunc', 'keyboard', 'value', 'mask', 'InputProps', 'keyboardIcon']);
 
       var _state = this.state,
           displayValue = _state.displayValue,
@@ -195,8 +161,7 @@ var DateTextField = function (_PureComponent) {
         inputProps: {
           mask: value === null ? null : mask,
           readOnly: !keyboard
-        },
-        className: classes.input
+        }
       };
 
       if (keyboard) {
@@ -219,7 +184,7 @@ var DateTextField = function (_PureComponent) {
         );
       }
 
-      return React.createElement(TextFieldComponent, _extends({
+      return React.createElement(TextField, _extends({
         onClick: this.handleFocus,
         error: !!error,
         helperText: error,
@@ -238,15 +203,8 @@ var DateTextField = function (_PureComponent) {
 }(PureComponent);
 
 DateTextField.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   value: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number, PropTypes.instanceOf(Date)]),
   mask: PropTypes.any,
-  minDate: DomainPropTypes.date,
-  minDateMessage: PropTypes.string,
-  maxDate: DomainPropTypes.date,
-  maxDateMessage: PropTypes.string,
-  disablePast: PropTypes.bool,
-  disableFuture: PropTypes.bool,
   disabled: PropTypes.bool,
   format: PropTypes.string,
   onChange: PropTypes.func.isRequired,
@@ -259,8 +217,7 @@ DateTextField.propTypes = {
   InputProps: PropTypes.shape(),
   keyboardIcon: PropTypes.node,
   invalidDateMessage: PropTypes.string,
-  clearable: PropTypes.bool,
-  TextFieldComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+  clearable: PropTypes.bool
 };
 DateTextField.defaultProps = {
   disabled: false,
@@ -275,21 +232,6 @@ DateTextField.defaultProps = {
   keyboardIcon: 'event',
   invalidDateMessage: 'Invalid Date Format',
   clearable: false,
-  onClear: undefined,
-  disablePast: false,
-  disableFuture: false,
-  minDate: '1900-01-01',
-  maxDate: '2100-01-01',
-  minDateMessage: 'Date should not be before minimal date',
-  maxDateMessage: 'Date should not be after maximal date',
-  TextFieldComponent: TextField
+  onClear: undefined
 };
-
-
-var styles = {
-  input: {
-    alignItems: 'flex-end'
-  }
-};
-
-export default withStyles(styles)(DateTextField);
+export default DateTextField;

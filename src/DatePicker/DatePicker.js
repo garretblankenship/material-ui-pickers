@@ -74,9 +74,9 @@ export var DatePicker = function (_PureComponent) {
           React.createElement(ToolbarButton, {
             type: 'subheading',
             onClick: this.openYearSelection,
-            selected: false,
+            selected: showYearSelection,
             label: 'change'
-          })
+          }),
         ),
         this.props.children,
         showYearSelection ? React.createElement(YearSelection, {

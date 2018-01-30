@@ -13,7 +13,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import withStyles from 'material-ui/styles/withStyles';
+import { withStyles } from 'material-ui';
 
 import DomainPropTypes from '../constants/prop-types';
 import ModalWrapper from '../wrappers/ModalWrapper';
@@ -81,11 +81,7 @@ export var DateTimePickerWrapper = function (_PickerBase) {
           onClear: this.handleClear,
           dialogContentClassName: classes.dialogContent,
           invalidLabel: invalidLabel,
-          labelFunc: labelFunc,
-          minDate: minDate,
-          maxDate: maxDate,
-          disablePast: disablePast,
-          disableFuture: disableFuture
+          labelFunc: labelFunc
         }, other),
         React.createElement(DateTimePicker, {
           date: date,
