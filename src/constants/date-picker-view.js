@@ -1,8 +1,7 @@
-export const YEAR = 'year';
+export var YEAR = 'year';
 
-export const DATE = 'date';
+export var DATE = 'date';
 
-export const HOUR = 'hour';
+export var HOUR = 'hour';
 
-export const MINUTES = 'minutes';
-
+export var MINUTES = 'minutes';

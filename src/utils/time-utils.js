@@ -1,39 +1,44 @@
-const center = {
+var center = {
   x: 260 / 2,
-  y: 260 / 2,
+  y: 260 / 2
 };
 
-const basePoint = {
+var basePoint = {
   x: center.x,
-  y: 0,
+  y: 0
 };
 
-const cx = basePoint.x - center.x;
-const cy = basePoint.y - center.y;
+var cx = basePoint.x - center.x;
+var cy = basePoint.y - center.y;
 
-const rad2deg = rad => rad * 57.29577951308232;
+var rad2deg = function rad2deg(rad) {
+  return rad * 57.29577951308232;
+};
 
-const getAngleValue = (step, offsetX, offsetY) => {
-  const x = offsetX - center.x;
-  const y = offsetY - center.y;
+var getAngleValue = function getAngleValue(step, offsetX, offsetY) {
+  var x = offsetX - center.x;
+  var y = offsetY - center.y;
 
-  const atan = Math.atan2(cx, cy) - Math.atan2(x, y);
+  var atan = Math.atan2(cx, cy) - Math.atan2(x, y);
 
-  let deg = rad2deg(atan);
+  var deg = rad2deg(atan);
   deg = Math.round(deg / step) * step;
   deg %= 360;
 
-  const value = Math.floor(deg / step) || 0;
+  var value = Math.floor(deg / step) || 0;
   // eslint-disable-next-line no-restricted-properties
-  const delta = Math.pow(x, 2) + Math.pow(y, 2);
-  const distance = Math.sqrt(delta);
+  var delta = Math.pow(x, 2) + Math.pow(y, 2);
+  var distance = Math.sqrt(delta);
 
-  return { value, distance };
+  return { value: value, distance: distance };
 };
 
-export const getHours = (offsetX, offsetY, ampm) => {
+export var getHours = function getHours(offsetX, offsetY, ampm) {
   // eslint-disable-next-line
-  let { value, distance } = getAngleValue(30, offsetX, offsetY);
+  var _getAngleValue = getAngleValue(30, offsetX, offsetY),
+      value = _getAngleValue.value,
+      distance = _getAngleValue.distance;
+
   value = value || 12;
 
   if (!ampm) {
@@ -48,19 +53,20 @@ export const getHours = (offsetX, offsetY, ampm) => {
   return value;
 };
 
-export const getMinutes = (offsetX, offsetY, step = 6) => {
-  const { value } = getAngleValue(step, offsetX, offsetY);
+export var getMinutes = function getMinutes(offsetX, offsetY) {
+  var step = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 6;
+
+  var _getAngleValue2 = getAngleValue(step, offsetX, offsetY),
+      value = _getAngleValue2.value;
 
   return value;
 };
 
-export const convertToMeridiem = (time, meridiem, ampm) => {
+export var convertToMeridiem = function convertToMeridiem(time, meridiem, ampm) {
   if (ampm) {
-    const currentMeridiem = time.hours() >= 12 ? 'pm' : 'am';
+    var currentMeridiem = time.hours() >= 12 ? 'pm' : 'am';
     if (currentMeridiem !== meridiem) {
-      const hours = meridiem === 'am'
-        ? time.hours() - 12
-        : time.hours() + 12;
+      var hours = meridiem === 'am' ? time.hours() - 12 : time.hours() + 12;
 
       return time.clone().hours(hours);
     }
@@ -68,4 +74,3 @@ export const convertToMeridiem = (time, meridiem, ampm) => {
 
   return time;
 };
-

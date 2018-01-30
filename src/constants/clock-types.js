@@ -1,4 +1,3 @@
-export const HOURS = 'hours';
+export var HOURS = 'hours';
 
-export const MINUTES = 'minutes';
-
+export var MINUTES = 'minutes';

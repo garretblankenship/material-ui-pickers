@@ -1,7 +1,7 @@
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 
-const moment = extendMoment(Moment);
+var moment = extendMoment(Moment);
 
 export function formatNumber(num) {
   return num;
@@ -64,19 +64,21 @@ export function setYear(date, year) {
 }
 
 export function getWeekdays() {
-  return [0, 1, 2, 3, 4, 5, 6].map(dayOfWeek => moment().weekday(dayOfWeek).format('dd')[0]);
+  return [0, 1, 2, 3, 4, 5, 6].map(function (dayOfWeek) {
+    return moment().weekday(dayOfWeek).format('dd')[0];
+  });
 }
 
 export function getWeekArray(date) {
-  const start = date.clone().startOf('month').startOf('week');
-  const end = date.clone().endOf('month').endOf('week');
+  var start = date.clone().startOf('month').startOf('week');
+  var end = date.clone().endOf('month').endOf('week');
 
-  const weeks = Array.from(moment.range(start, end).by('week'));
+  var weeks = Array.from(moment.range(start, end).by('week'));
 
-  const nestedWeeks = [];
+  var nestedWeeks = [];
 
-  weeks.forEach((week) => {
-    const endOfWeek = week.clone().endOf('week');
+  weeks.forEach(function (week) {
+    var endOfWeek = week.clone().endOf('week');
     nestedWeeks.push(Array.from(moment.range(week, endOfWeek).by('day')));
   });
 
